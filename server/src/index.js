@@ -9,7 +9,7 @@ import { connectDb } from './models/connectDb.js';
 connectDb()
 .then(()=>{
     app.listen(process.env.PORT , ()=>{
-        console.log(`Server started at https://localhost:${process.env.PORT}`)
+        console.log(`Server started at http://localhost:${process.env.PORT}`)
     })
 })
 .catch((err)=>{
