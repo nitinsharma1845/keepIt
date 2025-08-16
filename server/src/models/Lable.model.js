@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const labelSchema = new mongoose.Schema(
+const lableSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -13,8 +13,13 @@ const labelSchema = new mongoose.Schema(
         ref: "Note",
       },
     ],
+    owner : {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : "User",
+      required : true
+    }
   },
   { timestamps: true }
 );
 
-export const Lable = mongoose.model("Lable", labelSchema);
+export const Lable = mongoose.model("Lable", lableSchema);

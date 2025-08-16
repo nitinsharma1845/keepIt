@@ -19,7 +19,11 @@ app.use(express.static('public'))
 //Routes
 
 import userRoute from './routes/user.routes.js'
+import lableRoute from './routes/label.routes.js'
+import notesRoute from './routes/notes.routes.js'
 
 app.use('/api/v1/user', userRoute)
+app.use('/api/v1/lable' , lableRoute )
+app.use('/api/v1/note' , notesRoute)
 
 export default app;

@@ -20,6 +20,12 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String, //Clodinary url
     },
+    lables: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Lable",
+      },
+    ],
   },
   { timestamps: true }
 );
@@ -37,15 +43,14 @@ userSchema.methods.comparePassword = async function (password) {
 userSchema.methods.generateJwtToken = function () {
   return jwt.sign(
     {
-      _id : this._id,
-      avatar : this.avatar,
-      username : this.username
+      _id: this._id,
+      avatar: this.avatar,
+      username: this.username,
     },
     process.env.JWT_SECRET_KEY,
     {
-      expiresIn : "2d"
+      expiresIn: "2d",
     }
-  
   );
 };
 

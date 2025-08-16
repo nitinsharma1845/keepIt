@@ -8,7 +8,7 @@ export const authlayer = async (req, res , next) => {
 
     const token = req.cookies.token || req.headers("Authorization");
 
-    if(!token) throw new ApiError(403 , "Unauthorization Request")
+    if(!token) throw new ApiError(403 , "Unauthorized Request")
 
     const decodedInfo = jwt.verify(token , process.env.JWT_SECRET_KEY)
 

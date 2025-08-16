@@ -1,3 +1,4 @@
+import { Lable } from "../models/Lable.model.js";
 import { User } from "../models/User.model.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
@@ -47,6 +48,15 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (!user) throw new ApiError(500, "Error while registering...");
+
+  const lable = await Lable.create({
+    name: "General",
+    notes: [],
+    owner: user._id,
+  });
+
+  user.lables.push(lable._id);
+  await user.save({ validateBeforeSave: false });
 
   const createdUser = await User.findById(user._id).select("-password");
 
@@ -98,4 +108,4 @@ const logout = asyncHandler(async (req, res) => {
     .json(new ApiResponse(201, null, "Logout sucessfully..."));
 });
 
-export { registerUser, loginUser, currentUser , logout };
+export { registerUser, loginUser, currentUser, logout };

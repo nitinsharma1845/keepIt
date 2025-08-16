@@ -15,6 +15,12 @@ const noteSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    lable : {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : "Lable",
+      required : true
+    },
+
     status: {
       type: String,
       enum: ["archived", "active", "trashed"],
