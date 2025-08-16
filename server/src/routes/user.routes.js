@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { registerUser } from "../controllers/user.controller";
-import { upload } from "../middlewares/multer.middleware";
+import { currentUser, loginUser, registerUser } from "../controllers/user.controller.js";
+import { upload } from "../middlewares/multer.middleware.js";
+import { authlayer } from "../middlewares/auth.middleware.js";
 
 const router = Router()
 
@@ -14,8 +15,14 @@ const router = Router()
 
 // these are two ways to setup routes 
 
-router.route('/register').post(upload.single('avatar'), registerUser)
+// console.log(upload)
+// console.log(registerUser)
 
+router.route('/signup').post( upload.single('avatar'), registerUser)
+
+router.post('/login' , loginUser)
+
+router.get('/me' , authlayer , currentUser )
 
 
 export default router

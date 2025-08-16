@@ -5,11 +5,11 @@
 // }
 //if we use it we have to add a middleware to handle the rror and send the response accordingly
 
-const asyncHandler = async (fn) =>{
+const asyncHandler = (fn) => async (req , res , next) =>{
     try {
         return await fn(req , res , next)
     } catch (error) {
-        res.status(error.statusCode || 500).json({
+        res.status(Number(error.statusCode) || 500).json({
             message : error.message || "Internal Server Error ::: ",
             sucess : false
         })

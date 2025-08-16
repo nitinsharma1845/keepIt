@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from "cloudinary";
-import { ApiError } from "./apiError";
+import { ApiError } from "./apiError.js";
 import fs from "fs";
 
 export const uploadToCloudinary = async (localpath) => {
