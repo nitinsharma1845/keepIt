@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { currentUser, loginUser, registerUser } from "../controllers/user.controller.js";
+import { currentUser, loginUser, logout, registerUser } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { authlayer } from "../middlewares/auth.middleware.js";
 
@@ -23,6 +23,8 @@ router.route('/signup').post( upload.single('avatar'), registerUser)
 router.post('/login' , loginUser)
 
 router.get('/me' , authlayer , currentUser )
+
+router.route('/logout').post(authlayer , logout)
 
 
 export default router
